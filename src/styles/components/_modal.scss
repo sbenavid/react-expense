@@ -1,0 +1,42 @@
+// esta es la manera de definir estilos para componentes de terceros.
+.ReactModalPortal > div {
+    opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+    // propiedad de flexbox para alinear verticalmente
+    align-items: center;
+    // una de las mejores formas de acomodar elementos es con flexbox!
+    display: flex;
+    // alineacion horizontal de elementos (flexbox)
+    justify-content: center;
+    transition: opacity 400ms ease-in-out;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+    opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+    opacity: 0;
+}
+
+.modal{
+    background: $ligth-blue;
+    color: white;
+    max-width: 30rm;
+    outline: none;
+    padding: $large-size;
+    text-align: center;
+}
+
+.modal__title {
+    margin: 0 0 $medium-size 0;
+}
+
+.modal__body {
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0 0 $large-size 0;
+    word-break: break-all;
+}

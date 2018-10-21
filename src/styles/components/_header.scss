@@ -1,0 +1,27 @@
+// estilo para el header
+.header {
+  background: $off-black;
+  color: white;
+  margin-bottom: $xl-size;
+  padding: $medium-size 0
+}
+
+//naming convention. Title inside header
+// BEM convention. Block element modifier
+.header__title {
+  font-size: $large-size;
+  margin: 0;
+}
+
+.header__subtitle {
+  color: $off-white;
+  font-size: $medium-size;
+  font-weight: 500;
+  margin: 0;
+}
+
+@media (min-width: $desktop-breakpoint) {
+  .header {
+    margin-bottom: $medium-size;
+  }
+}
