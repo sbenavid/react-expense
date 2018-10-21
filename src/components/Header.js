@@ -8,9 +8,7 @@ const Header = () => (
         {/* link to home page */}
         <NavLink to="/" activeClassName="is-active" exact={true}>Dashboard</NavLink>
         {/* Link to create page */}
-        <NavLink to="/create" activeClassName="is-active">Nuevo</NavLink>
-        {/* link to edit page */}
-        <NavLink to="/edit" activeClassName="is-active">Cambiar</NavLink>
+        <NavLink to="/create" activeClassName="is-active">Nuevo</NavLink>        
         {/* link to help page */}
         <NavLink to="/help" activeClassName="is-active">Ayuda</NavLink>
     </header>
