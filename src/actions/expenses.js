@@ -1,3 +1,6 @@
+//
+// Action generators para expenses
+//
 // biblio para crear un object id
 import uuid from 'uuid';
 // Agregar un nuevo gasto

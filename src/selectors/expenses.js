@@ -1,5 +1,5 @@
 //
-// Get visible expenses
+// Los selectors hacen los querys
 //
 // Aplicar los filtros para mostrar solo los operadores en la data
 //
