@@ -14,14 +14,14 @@ import getVisibleExpenses from './selectors/expenses';
 const store = configStore();
 
 // Agregar dos gastos
-store.dispatch(addExpense({ description: 'recibo del agua' }));
-store.dispatch(addExpense({ description: 'recibo gas natural' }));
+store.dispatch(addExpense({ description: 'recibo del agua', amount:4300 }));
+store.dispatch(addExpense({ description: 'recibo gas natural', amount:2300 }));
 // filtro por "recibo"
-store.dispatch(setTextFiler('recibo'));
+store.dispatch(setTextFiler('agua'));
 
 // funcion para hacer un timeout
 setTimeout(() => {
-    store.dispatch(setTextFiler('gas'));
+    store.dispatch(setTextFiler('recibo'));
 },3000);
 
 // definir 
