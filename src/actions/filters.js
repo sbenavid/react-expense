@@ -2,7 +2,7 @@
 // Action generators para filters
 //
 // SET_TEXT_FILTER
-export const setTextFiler = (texto = '') => ({
+export const setTextFilter = (texto = '') => ({
     type: 'SET_TEXT_FILTER',
     texto
 });
