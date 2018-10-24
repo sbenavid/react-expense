@@ -1,3 +1,5 @@
+import moment from 'moment';
+import { create } from 'domain';
 //
 // Los selectors hacen los querys
 //
@@ -7,8 +9,9 @@
 // que se usaran en el filtrado de data
 export default (expenses, {text, sortBy, startDate, endDate}) => {
     return expenses.filter((expense) => {
-        const startDateMatch = typeof startDate !== 'number' || expense.createdAt >= startDate;
-        const endDateMatch = typeof endDate !== 'number' || expense.createdAt <= endDate;
+        const createdAtMoment = moment(expense.createdAt);
+        const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day'): true;
+        const endDateMatch = endDate ? endDate.isSameOrAfter(createdAtMoment, 'day'): true;
 
         // vamos a buscar si la descripcion del gasto incluye el texto de busqueda
         // se convierte ambos strings a minuscula.
