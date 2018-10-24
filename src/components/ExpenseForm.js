@@ -7,12 +7,16 @@ import 'react-dates/lib/css/_datepicker.css'
 // console.log(ahora.format('MMM/DD/YYYY'));
 
 export default class ExpenseForm extends React.Component {
-    state = {
-        descripcion: '',
-        note: '',
-        amount: '',
-        createdAt: moment(),
-        calendarFocused: false     //value
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+            descripcion: props.expense ? props.expense.description : '',  
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),
+            calendarFocused: false     //value
+        }
     }
     onDescriptionChange = (e) => {
         const descripcion = e.target.value;
@@ -74,6 +78,7 @@ export default class ExpenseForm extends React.Component {
                     <input 
                       type="text"
                       placeholder="Cantidad"     
+                      value={this.state.amount}
                       onChange={this.onAmountChange}                 
                     />
                     <SingleDatePicker 
@@ -91,7 +96,7 @@ export default class ExpenseForm extends React.Component {
                     >
                     </textarea>
                     <button>
-                        Agregar gasto
+                        Guardar
                     </button>
                 </form>
             </div>
