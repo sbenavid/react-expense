@@ -8,21 +8,22 @@ import './styles/styles.scss'
 import AppRouter from './routers/AppRouter';
 import configStore from './store/configStore';
 import { addExpense } from './actions/expenses';
-import { setTextFiler } from './actions/filters';
+import { setTextFilter } from './actions/filters';
 import getVisibleExpenses from './selectors/expenses';
 
 const store = configStore();
 
 // Agregar dos gastos
-store.dispatch(addExpense({ description: 'recibo del agua', amount:4300 }));
-store.dispatch(addExpense({ description: 'recibo gas natural', amount:2300 }));
+store.dispatch(addExpense({ description: 'recibo del agua', amount:2500, createdAt:1000 }));
+store.dispatch(addExpense({ description: 'recibo gas natural', amount:5300 }));
+store.dispatch(addExpense({ description: 'renta', amount:46000, createdAt:12300 }));
 // filtro por "recibo"
-store.dispatch(setTextFiler('agua'));
+// store.dispatch(setTextFilter('recibo'));
 
 // funcion para hacer un timeout
-setTimeout(() => {
-    store.dispatch(setTextFiler('recibo'));
-},3000);
+// setTimeout(() => {
+//     store.dispatch(setTextFilter(''));
+// },3000);
 
 // definir 
 const state = store.getState();

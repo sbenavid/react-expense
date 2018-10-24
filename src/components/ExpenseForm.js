@@ -1,10 +1,18 @@
 import React from 'react';
+import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css'
+
+const ahora = moment();
+console.log(ahora.format('MMM/DD/YYYY'));
 
 export default class ExpenseForm extends React.Component {
     state = {
         descripcion: '',
         nota: '',
-        amount: ''
+        amount: '',
+        createdAt: moment(),
+        calendarFocused: false     //value
     }
     onDescriptionChange = (e) => {
         const descripcion = e.target.value;
@@ -22,11 +30,17 @@ export default class ExpenseForm extends React.Component {
         } else {
             alert('Caracter invalido en importe, solo se permiten 2 decimales');
         }
-    }
+    };
+    // handler
+    onDateChange = (createdAt) => {
+        this.setState(() => ({createdAt}))
+    };
+    onFocusChange = ({ focused }) => {
+        this.setState(() =>({calendarFocused: focused}))
+    };
     render () {
         return (
-            <div>
-                ExpenseForm
+            <div>            
                 <form>
                     <input 
                       type="text"
@@ -40,10 +54,18 @@ export default class ExpenseForm extends React.Component {
                       placeholder="Cantidad"     
                       onChange={this.onAmountChange}                 
                     />
+                    <SingleDatePicker 
+                      date={this.state.createdAt}
+                      onDateChange={this.onDateChange}
+                      focused={this.state.calendarFocused}
+                      onFocusChange={this.onFocusChange}
+                      numberOfMonths={1}
+                      isOutsideRange={() => false}
+                    />
                     <textarea
                       placeholder="Nota sobre este gasto (opcional)"
                       value={this.state.nota}
-                      onChange={this.onNoteChange}
+                      onChange={this.onDateChange}
                     >
                     </textarea>
                     <button>
