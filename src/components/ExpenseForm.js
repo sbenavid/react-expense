@@ -3,13 +3,13 @@ import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import 'react-dates/lib/css/_datepicker.css'
 
-const ahora = moment();
-console.log(ahora.format('MMM/DD/YYYY'));
+// const ahora = moment();
+// console.log(ahora.format('MMM/DD/YYYY'));
 
 export default class ExpenseForm extends React.Component {
     state = {
         descripcion: '',
-        nota: '',
+        note: '',
         amount: '',
         createdAt: moment(),
         calendarFocused: false     //value
@@ -19,29 +19,51 @@ export default class ExpenseForm extends React.Component {
         this.setState(() => ({ descripcion }))
     };
     onNoteChange = (e) => {
-        const nota = e.target.value;
-        this.setState(() => ({ nota }))
-    };
+        const note = e.target.value;
+        this.setState(() => ({ note }));
+      };
     onAmountChange = (e) => {
         const amount = e.target.value;
         // validacion de un numero real mediante regex
-        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState(() => ({amount}))
         } else {
-            alert('Caracter invalido en importe, solo se permiten 2 decimales');
+            alert('Solo se permite importes con maximo 2 decimales');
         }
     };
     // handler
     onDateChange = (createdAt) => {
-        this.setState(() => ({createdAt}))
+        if (createdAt) {
+            this.setState(() => ({createdAt}))
+        }        
     };
     onFocusChange = ({ focused }) => {
         this.setState(() =>({calendarFocused: focused}))
     };
+    onSubmit = (e) => {
+        e.preventDefault();
+        // validacion que no queden vacios los campos
+        if (!this.state.descripcion || !this.state.amount) {
+            // set error state
+            this.setState(() => ({error: 'Descripcion o importe no pueden ir en blanco'}));
+            console.log('error');
+        } else {
+            // clear error
+            this.setState(() => ({error: ''}));
+            console.log('submited');
+            this.props.onSubmit({
+                description: this.state.descripcion,
+                amount: parseFloat(this.state.amount, 10) * 100,
+                createdAt: this.state.createdAt.valueOf(),
+                note: this.state.note
+            })
+        }
+    }
     render () {
         return (
             <div>            
-                <form>
+                {this.state.error && <p>{this.state.error}</p>}
+                <form onSubmit={this.onSubmit}>
                     <input 
                       type="text"
                       placeholder="Descripcion"
@@ -64,8 +86,8 @@ export default class ExpenseForm extends React.Component {
                     />
                     <textarea
                       placeholder="Nota sobre este gasto (opcional)"
-                      value={this.state.nota}
-                      onChange={this.onDateChange}
+                      value={this.state.note}                      
+                      onChange={this.onNoteChange}
                     >
                     </textarea>
                     <button>
