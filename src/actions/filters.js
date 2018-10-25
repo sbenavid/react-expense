@@ -2,9 +2,9 @@
 // Action generators para filters
 //
 // SET_TEXT_FILTER
-export const setTextFilter = (texto = '') => ({
+export const setTextFilter = (text = '') => ({
     type: 'SET_TEXT_FILTER',
-    texto
+    text
 });
 // SORT_BY_DATE
 export const sortByDate = () => ({

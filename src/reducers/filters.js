@@ -12,7 +12,7 @@ export default (state = filterReducerDefaultState, action) => {
         case 'SET_TEXT_FILTER':
             return {
                 ...state,
-                text: action.texto
+                text: action.text
             }
         case 'SORT_BY_AMOUNT':
             return {
