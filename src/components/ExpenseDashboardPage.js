@@ -4,7 +4,7 @@ import ExpenseListFilters from './ExpenseListFilters';
 
 const ExpenseDashboardPage = () => (
     <div>
-        <p>Esto es el copmonente de dashboard...</p>
+        <p>Esto es el componente de dashboard...</p>
         <ExpenseListFilters />
         <ExpenseList />
     </div>
