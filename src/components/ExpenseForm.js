@@ -44,17 +44,16 @@ export default class ExpenseForm extends React.Component {
     onFocusChange = ({ focused }) => {
         this.setState(() =>({calendarFocused: focused}))
     };
+
     onSubmit = (e) => {
         e.preventDefault();
         // validacion que no queden vacios los campos
         if (!this.state.descripcion || !this.state.amount) {
             // set error state
             this.setState(() => ({error: 'Descripcion o importe no pueden ir en blanco'}));
-            console.log('error');
         } else {
             // clear error
             this.setState(() => ({error: ''}));
-            console.log('submited');
             this.props.onSubmit({
                 description: this.state.descripcion,
                 amount: parseFloat(this.state.amount, 10) * 100,
