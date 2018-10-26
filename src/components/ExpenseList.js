@@ -4,15 +4,19 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
 
 //stateless funcional component
-const ExpenseList = (props) => (
+export const ExpenseList = (props) => (
     <div>
-        <h1>Lista de gastos</h1>
-        {props.expenses.length}
-        {props.expenses.map((expense) => {
-            return <ExpenseListItem key={expense.id} {...expense}/>
-        })}
+      {
+        props.expenses.length === 0 ? (
+          <p>No hay gastos registrados</p>
+        ) : (
+            props.expenses.map((expense) => {
+              return <ExpenseListItem key={expense.id} {...expense} />;
+            })
+          )
+      }
     </div>
-);
+  );
 
 // usar el selector para mostrar solamente los datos definidos por el filtro y sort
 const mapStateToProps = (state) => {
