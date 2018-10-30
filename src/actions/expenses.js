@@ -27,7 +27,7 @@ export const startAddExpense = (expenseData = {}) => {
         } = expenseData;
 
         const expense = { description, note, amount, createdAt };
-        database.ref('gastos').push(expense).then((ref) => {            
+        database.ref('expenses').push(expense).then((ref) => {            
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
@@ -57,28 +57,33 @@ export const editExpense = ( id, updates) => ({
     updates
 });
 
+
 // set expenses (obtener lista)
 // este manipula el store
 export const setExpenses = (expenses) => ({
     type: 'SET_EXPENSES',
     expenses
-});
+  });
 
 // async action para despachar el anterior
-  export const startSetExpenses = () => {
-    return (dispatch) => {
-      return database.ref('gastos').once('value').then((snapshot) => {
-        const expenses = [];
-  
-        snapshot.forEach((childSnapshot) => {
-          expenses.push({
-            id: childSnapshot.key,
-            ...childSnapshot.val()
-          });
+export const startSetExpenses = () => {
+return (dispatch) => {
+    // fetch from firebase. La consulta no funciona con mi db 'gastos',
+    // la tuve que cambiar a "expenses"
+    return database.ref('expenses').once('value').then((snapshot) => {
+    // en el mejor caso, se inicializa un arreglo vacio y se llena con
+    // la data de la consulta
+    const expenses = [];
+
+    snapshot.forEach((childSnapshot) => {
+        expenses.push({
+        id: childSnapshot.key,
+        ...childSnapshot.val()
         });
-        
-        dispatch(setExpenses(expenses));
-      });
-    };
-  };
+    });
+
+    dispatch(setExpenses(expenses));
+    });
+};
+};
   

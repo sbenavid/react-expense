@@ -20,7 +20,7 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(<p>cargando...</p>, document.getElementById('app'));
+ReactDOM.render(<p>Cargando...</p>, document.getElementById('app'));
 
 store.dispatch(startSetExpenses()).then(() => {
   ReactDOM.render(jsx, document.getElementById('app'));
