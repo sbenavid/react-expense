@@ -14,13 +14,7 @@ export const ExpensesSummary = ({ expenseCount, expensesTotal }) => {
         </div>
     );
 };
-//
-// return (
-//   <div>
-//     <h1>Viewing {expenseCount} {expenseWord} totalling {formattedExpensesTotal}</h1>
-//   </div>
-// );
-//
+
 
 const mapStateToProps = (state) => {
     const visibleExpenses = selectExpenses(state.expenses, state.filters);
@@ -32,3 +26,4 @@ const mapStateToProps = (state) => {
   };
 
 export default connect(mapStateToProps)(ExpensesSummary);
+

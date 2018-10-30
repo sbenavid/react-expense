@@ -42,9 +42,43 @@ export const removeExpense = ( { id } = {}) => ({
     id
 });
 
+export const startRemoveExpense = ( { id } = {}) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            dispatch(removeExpense({ id }));
+        });
+    };
+};
+
 // Modificar un gasto ya existente, a partir de su id
 export const editExpense = ( id, updates) => ({
     type: 'EDIT_EXPENSE',
     id,
     updates
 });
+
+// set expenses (obtener lista)
+// este manipula el store
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+// async action para despachar el anterior
+  export const startSetExpenses = () => {
+    return (dispatch) => {
+      return database.ref('gastos').once('value').then((snapshot) => {
+        const expenses = [];
+  
+        snapshot.forEach((childSnapshot) => {
+          expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+          });
+        });
+        
+        dispatch(setExpenses(expenses));
+      });
+    };
+  };
+  

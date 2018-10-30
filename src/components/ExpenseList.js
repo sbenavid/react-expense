@@ -29,3 +29,4 @@ const mapStateToProps = (state) => {
 // el primer elemento define que informacion va a ser accesada
 export default connect(mapStateToProps)(ExpenseList);
 
+

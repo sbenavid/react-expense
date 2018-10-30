@@ -22,7 +22,9 @@ export default (state = expensesReducerDefaultState, action) => {
                     // si no es el mismo regresa el mismo objeto sin alterar
                     return expense;
                 }
-            })
+            });
+        case 'SET_EXPENSE':
+            return action.expenses;
         default:
             return state;
     }
