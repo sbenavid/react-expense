@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import 'normalize.css/normalize.css' // normalize es para dar imagen unificada entre browsers
 import './styles/styles.scss'
 // componentes creados
-import AppRouter from './routers/AppRouter';
+import AppRouter, {history} from './routers/AppRouter';
 import configStore from './store/configStore';
 import { startSetExpenses } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
@@ -33,7 +33,8 @@ store.dispatch(startSetExpenses()).then(() => {
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log('login...');
-    } else {
-        console.log('logout.')
+    } else {        
+        // cuando alguien se sale, mandarlo a la pag de login
+        history.push('/');
     }
 });
