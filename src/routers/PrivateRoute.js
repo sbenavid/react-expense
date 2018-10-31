@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 import Header from '../components/Header';
 
+
 //stateless funcitonal component
 export const PrivateRoute = ({
     isAuthenticated,
@@ -25,5 +26,5 @@ const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid  // si el valor está asignado, se volverá true
 });
 
-export default(mapStateToProps)(PrivateRoute);
+export default connect(mapStateToProps)(PrivateRoute);
 
