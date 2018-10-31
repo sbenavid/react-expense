@@ -5,25 +5,25 @@ import Header from '../components/Header';
 
 //stateless funcitonal component
 export const PrivateRoute = ({
-    isAuthenticated, 
-    component: Componet,
+    isAuthenticated,
+    component: Component,
     ...rest
-}) => (
-    <Route {...rest} component = {(props) => (
+  }) => (
+      <Route {...rest} component={(props) => (
         isAuthenticated ? (
-            <div>
-                <Header />
-                <Component {...props}/>
-            </div>            
+          <div>
+            <Header />
+            <Component {...props} />
+          </div>
         ) : (
             <Redirect to="/" />
-        )
-
-    )} />
-);
+          )
+      )} />
+    );
 
 const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid  // si el valor está asignado, se volverá true
 });
 
 export default(mapStateToProps)(PrivateRoute);
+
