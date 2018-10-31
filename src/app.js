@@ -8,7 +8,8 @@ import './styles/styles.scss'
 import AppRouter, {history} from './routers/AppRouter';
 import configStore from './store/configStore';
 import { startSetExpenses } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+import { login, logout } from './actions/auth';
+
 import getVisibleExpenses from './selectors/expenses';
 import {firebase} from './firebase/firebase';
 //import 'react-dates/lib/css/_datepicker';
@@ -35,7 +36,8 @@ ReactDOM.render(<p>Cargando...</p>, document.getElementById('app'));
 // login/logout
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('login...');
+        store.dispatch(login(user.id));
+        console.log('login... userid:',user.id);
         // asegurarse que el usuario obtenga su data especifica
         store.dispatch(startSetExpenses()).then(() => {         // ahorita toma todos los gastos
             renderApp();
@@ -46,6 +48,7 @@ firebase.auth().onAuthStateChanged((user) => {
         // redireccionar apropiadamente
     } else {        
         // cuando alguien se sale, mandarlo a la pag de login
+        store.dispatch(logout());
         renderApp();
         history.push('/');
     }
