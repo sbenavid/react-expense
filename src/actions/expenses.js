@@ -17,8 +17,10 @@ export const addExpense = (expense) => ({
     expense
 });
 
+// agregar un gasto al repositorio firebase
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState()auth.uid;
         const {
             description = '', 
             note = '', 
@@ -27,7 +29,8 @@ export const startAddExpense = (expenseData = {}) => {
         } = expenseData;
 
         const expense = { description, note, amount, createdAt };
-        database.ref('expenses').push(expense).then((ref) => {            
+        // cambio acceso para leer repositorio personalizado por cada usuario
+        database.ref(`users/${uid}/expenses`).push(expense).then((ref) => {            
             dispatch(addExpense({
                 id: ref.key,
                 ...expense
