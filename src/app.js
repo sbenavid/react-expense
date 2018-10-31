@@ -36,8 +36,8 @@ ReactDOM.render(<p>Cargando...</p>, document.getElementById('app'));
 // login/logout
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        store.dispatch(login(user.id));
-        console.log('login... userid:',user.id);
+        store.dispatch(login(user.uid));
+        console.log('login... userid:',user.uid);
         // asegurarse que el usuario obtenga su data especifica
         store.dispatch(startSetExpenses()).then(() => {         // ahorita toma todos los gastos
             renderApp();
@@ -53,3 +53,4 @@ firebase.auth().onAuthStateChanged((user) => {
         history.push('/');
     }
 });
+
