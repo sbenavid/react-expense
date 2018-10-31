@@ -46,8 +46,9 @@ export const removeExpense = ( { id } = {}) => ({
 });
 
 export const startRemoveExpense = ( { id } = {}) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).remove().then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).remove().then(() => {
             dispatch(removeExpense({ id }));
         });
     };
@@ -61,8 +62,9 @@ export const editExpense = ( id, updates) => ({
 });
 
 export const startEditExpense = (id, updates) => {
-    return (dispatch) => {
-        return database.ref(`expenses/${id}`).update(updates).then(() => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
+        return database.ref(`users/${uid}/expenses/${id}`).update(updates).then(() => {
             dispatch(editExpense(id, updates));
         });
     };
@@ -77,10 +79,11 @@ export const setExpenses = (expenses) => ({
 
 // async action para despachar el anterior
 export const startSetExpenses = () => {
-return (dispatch) => {
+return (dispatch, getState) => {
+    const uid = getState().auth.uid;
     // fetch from firebase. La consulta no funciona con mi db 'gastos',
     // la tuve que cambiar a "expenses"
-    return database.ref('expenses').once('value').then((snapshot) => {
+    return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
     // en el mejor caso, se inicializa un arreglo vacio y se llena con
     // la data de la consulta
     const expenses = [];
@@ -96,4 +99,3 @@ return (dispatch) => {
     });
 };
 };
-  
