@@ -20,7 +20,7 @@ export const addExpense = (expense) => ({
 // agregar un gasto al repositorio firebase
 export const startAddExpense = (expenseData = {}) => {
     return (dispatch, getState) => {
-        const uid = getState()auth.uid;
+        const uid = getState().auth.uid;
         const {
             description = '', 
             note = '', 
