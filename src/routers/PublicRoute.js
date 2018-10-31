@@ -22,5 +22,7 @@ const mapStateToProps = (state) => ({
     isAuthenticated: !!state.auth.uid  // si el valor está asignado, se volverá true
 });
 
-export default(mapStateToProps)(PublicRoute);
+export default connect(mapStateToProps)(PublicRoute);
+
+
 
