@@ -21,20 +21,32 @@ const jsx = (
     </Provider>
 );
 
+let hasRendered = false;
+const renderApp = () => {
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;        
+    }
+};
+
 ReactDOM.render(<p>Cargando...</p>, document.getElementById('app'));
-
-store.dispatch(startSetExpenses()).then(() => {
-  ReactDOM.render(jsx, document.getElementById('app'));
-});
-
 
 // identificar si existio un cambio de estatus
 // login/logout
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
         console.log('login...');
+        // asegurarse que el usuario obtenga su data especifica
+        store.dispatch(startSetExpenses()).then(() => {         // ahorita toma todos los gastos
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+          });
+        // redireccionar apropiadamente
     } else {        
         // cuando alguien se sale, mandarlo a la pag de login
+        renderApp();
         history.push('/');
     }
 });
