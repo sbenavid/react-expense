@@ -13,6 +13,7 @@ import { login, logout } from './actions/auth';
 import getVisibleExpenses from './selectors/expenses';
 import {firebase} from './firebase/firebase';
 //import 'react-dates/lib/css/_datepicker';
+import LoadingPage from './components/LoadingPage';
 
 const store = configStore();
 
@@ -30,7 +31,7 @@ const renderApp = () => {
     }
 };
 
-ReactDOM.render(<p>Cargando...</p>, document.getElementById('app'));
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 // identificar si existio un cambio de estatus
 // login/logout
