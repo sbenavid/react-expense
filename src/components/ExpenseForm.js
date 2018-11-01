@@ -69,6 +69,7 @@ export default class ExpenseForm extends React.Component {
                 <form onSubmit={this.onSubmit}>
                     <input 
                       type="text"
+                      className="text-input"
                       placeholder="Descripcion"
                       autoFocus
                       value={this.state.descripcion}
@@ -76,6 +77,7 @@ export default class ExpenseForm extends React.Component {
                     />
                     <input 
                       type="text"
+                      className="text-input"
                       placeholder="Cantidad"     
                       value={this.state.amount}
                       onChange={this.onAmountChange}                 
@@ -84,13 +86,14 @@ export default class ExpenseForm extends React.Component {
                       date={this.state.createdAt}
                       onDateChange={this.onDateChange}
                       focused={this.state.calendarFocused}
-                      onFocusChange={this.onFocusChange}
+                      onFocusChange={this.onFocusChange}                      
                       numberOfMonths={1}
                       isOutsideRange={() => false}
                     />
                     <textarea
                       placeholder="Nota sobre este gasto (opcional)"
-                      value={this.state.note}                      
+                      value={this.state.note}                    
+                      className="textarea" 
                       onChange={this.onNoteChange}
                     >
                     </textarea>
