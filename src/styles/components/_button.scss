@@ -2,9 +2,9 @@
 .button {
     background: $azul-google;
     border: none;
-    border-bottom: .3rem solid darken($purple, $amount: 10%);
+    border-bottom: .3rem solid darken($blue, $amount: 10%);
     color: white;
-    font-size: 1.8rem;
+    font-size: $font-size-large;
     font-weight: 500;
     padding: $small-size;
 }
