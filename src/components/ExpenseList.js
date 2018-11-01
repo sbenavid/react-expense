@@ -5,7 +5,12 @@ import selectExpenses from '../selectors/expenses';
 
 //stateless funcional component
 export const ExpenseList = (props) => (
-    <div>
+    <div className="content-container">
+     <div className="list-header">
+        <div className="show-for-mobile">Gastos</div>
+        <div className="show-for-desktop">Gasto</div>
+        <div className="show-for-desktop">Suma</div>
+     </div>
       {
         props.expenses.length === 0 ? (
           <p>No hay gastos registrados</p>

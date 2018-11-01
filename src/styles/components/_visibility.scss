@@ -1,0 +1,15 @@
+//
+// La lista de gastos tendrá un encabezado varible dependiendo el tamaño de la pantalla
+// dos elementos en pantallas grandes, uno solo en moviles
+
+.show-for-mobile {
+    @media (min-width: $desktop-breakpoint) {
+        display: none;
+    }
+}
+
+.show-for-desktop {
+    @media (max-width: $desktop-breakpoint - .01rem) {
+        display: none;
+    }
+}

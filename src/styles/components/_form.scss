@@ -1,6 +1,9 @@
 .form {
     display: flex;
     flex-direction: column;    
+    > * {
+        margin-bottom: $medium-size;
+    }
 }
 
 .form__error {
