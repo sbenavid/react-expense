@@ -1,7 +1,7 @@
 {
   "name": "expensify",
-  "version": "1.0.0",
-  "description": "App de ejemplo para aprender React",
+  "version": "1.0.1",
+  "description": "Control de gastos personales",
   "main": "index.js",
   "author": "Saul Benavides",
   "license": "MIT",
@@ -52,6 +52,6 @@
   "devDependencies": {
     "cross-env": "^5.2.0",
     "live-server": "^1.2.0",
-    "webpack-dev-server": "2.5.1"
+    "webpack-dev-server": "3.1.11"
   }
 }
